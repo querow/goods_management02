@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <!--开启二级缓存 true是开启，默认是false关闭-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <!--设置别名-->
+        <typeAlias type="java.lang.String" alias="string"/>
+    </typeAliases>
+
+</configuration>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.dao.OutStoreMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.pojo.OutStore" >
+    <id column="out_id" property="outId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <result column="emp_id" property="empId" jdbcType="BIGINT" />
+    <result column="out_date" property="outDate" jdbcType="TIMESTAMP" />
+    <result column="out_num" property="outNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    out_id, goods_id, emp_id, out_date, out_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from out_store
+    where out_id = #{outId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAlloutStore" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    <include refid="Base_Column_List" />
+    from out_store
+    where emp_id = #{empId}
+    order by out_date
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from out_store
+    where out_id = #{outId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.pojo.OutStore" >
+    insert into out_store (out_id, goods_id, emp_id, 
+      out_date, out_num)
+    values (#{outId,jdbcType=BIGINT}, #{goodsId,jdbcType=VARCHAR}, #{empId,jdbcType=BIGINT}, 
+      #{outDate,jdbcType=TIMESTAMP}, #{outNum,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.pojo.OutStore" >
+    insert into out_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="outId != null" >
+        out_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="empId != null" >
+        emp_id,
+      </if>
+      <if test="outDate != null" >
+        out_date,
+      </if>
+      <if test="outNum != null" >
+        out_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="outId != null" >
+        #{outId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null" >
+        #{empId,jdbcType=BIGINT},
+      </if>
+      <if test="outDate != null" >
+        #{outDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outNum != null" >
+        #{outNum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.pojo.OutStore" >
+    update out_store
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null" >
+        emp_id = #{empId,jdbcType=BIGINT},
+      </if>
+      <if test="outDate != null" >
+        out_date = #{outDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outNum != null" >
+        out_num = #{outNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where out_id = #{outId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.pojo.OutStore" >
+    update out_store
+    set goods_id = #{goodsId,jdbcType=VARCHAR},
+      emp_id = #{empId,jdbcType=BIGINT},
+      out_date = #{outDate,jdbcType=TIMESTAMP},
+      out_num = #{outNum,jdbcType=BIGINT}
+    where out_id = #{outId,jdbcType=BIGINT}
+  </update>
+</mapper>

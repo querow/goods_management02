@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.dao.EmpMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.pojo.Emp" >
+    <id column="emp_id" property="empId" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="emp_name" property="empName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="addr" property="addr" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    emp_id, username, password, emp_name, sex, tel, email, addr, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from emp
+    where emp_id = #{empId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from emp
+    where emp_id = #{empId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.pojo.Emp" >
+    insert into emp (emp_id, username, password, 
+      emp_name, sex, tel, 
+      email, addr, state)
+    values (#{empId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{empName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.pojo.Emp" >
+    insert into emp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="empId != null" >
+        emp_id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="empName != null" >
+        emp_name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="addr != null" >
+        addr,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="empId != null" >
+        #{empId,jdbcType=BIGINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null" >
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.pojo.Emp" >
+    update emp
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null" >
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where emp_id = #{empId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.pojo.Emp" >
+    update emp
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      emp_name = #{empName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER}
+    where emp_id = #{empId,jdbcType=BIGINT}
+  </update>
+</mapper>

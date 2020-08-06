@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.dao.InStoreMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.pojo.InStore" >
+    <id column="in_id" property="inId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <result column="emp_id" property="empId" jdbcType="BIGINT" />
+    <result column="in_date" property="inDate" jdbcType="TIMESTAMP" />
+    <result column="in_num" property="inNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    in_id, goods_id, emp_id, in_date, in_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from in_store
+    where in_id = #{inId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from in_store
+    where in_id = #{inId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.pojo.InStore" >
+    insert into in_store (in_id, goods_id, emp_id, 
+      in_date, in_num)
+    values (#{inId,jdbcType=BIGINT}, #{goodsId,jdbcType=VARCHAR}, #{empId,jdbcType=BIGINT}, 
+      #{inDate,jdbcType=TIMESTAMP}, #{inNum,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.pojo.InStore" >
+    insert into in_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="inId != null" >
+        in_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="empId != null" >
+        emp_id,
+      </if>
+      <if test="inDate != null" >
+        in_date,
+      </if>
+      <if test="inNum != null" >
+        in_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="inId != null" >
+        #{inId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null" >
+        #{empId,jdbcType=BIGINT},
+      </if>
+      <if test="inDate != null" >
+        #{inDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inNum != null" >
+        #{inNum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.pojo.InStore" >
+    update in_store
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null" >
+        emp_id = #{empId,jdbcType=BIGINT},
+      </if>
+      <if test="inDate != null" >
+        in_date = #{inDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inNum != null" >
+        in_num = #{inNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where in_id = #{inId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.pojo.InStore" >
+    update in_store
+    set goods_id = #{goodsId,jdbcType=VARCHAR},
+      emp_id = #{empId,jdbcType=BIGINT},
+      in_date = #{inDate,jdbcType=TIMESTAMP},
+      in_num = #{inNum,jdbcType=BIGINT}
+    where in_id = #{inId,jdbcType=BIGINT}
+  </update>
+</mapper>

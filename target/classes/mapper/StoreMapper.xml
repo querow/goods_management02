@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.dao.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.pojo.Store" >
+    <id column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="BIGINT" />
+    <result column="u_num" property="uNum" jdbcType="BIGINT" />
+    <result column="d_num" property="dNum" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    store_id, store_name, num, u_num, d_num, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from store
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.pojo.Store">
+    select
+    <include refid="Base_Column_List"/>
+    from store
+    <trim prefix="where">
+      <if test="storeName != null and storeName!=''" >
+      store_name like concat('%',#{storeName,jdbcType=VARCHAR},'%') and
+      </if>
+      state = 0
+    </trim>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from store
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.pojo.Store" >
+    insert into store (store_id, store_name, num, 
+      u_num, d_num, state)
+    values (#{storeId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR}, #{num,jdbcType=BIGINT}, 
+      #{uNum,jdbcType=BIGINT}, #{dNum,jdbcType=BIGINT}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.pojo.Store" >
+    insert into store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="uNum != null" >
+        u_num,
+      </if>
+      <if test="dNum != null" >
+        d_num,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=BIGINT},
+      </if>
+      <if test="uNum != null" >
+        #{uNum,jdbcType=BIGINT},
+      </if>
+      <if test="dNum != null" >
+        #{dNum,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.pojo.Store" >
+    update store
+    <set >
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=BIGINT},
+      </if>
+      <if test="uNum != null" >
+        u_num = #{uNum,jdbcType=BIGINT},
+      </if>
+      <if test="dNum != null" >
+        d_num = #{dNum,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.pojo.Store" >
+    update store
+    set store_name = #{storeName,jdbcType=VARCHAR},
+      num = #{num,jdbcType=BIGINT},
+      u_num = #{uNum,jdbcType=BIGINT},
+      d_num = #{dNum,jdbcType=BIGINT},
+      state = #{state,jdbcType=INTEGER}
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -4,190 +4,149 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.wen</groupId>
+    <groupId>com.hqyj</groupId>
     <artifactId>mybatistest</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
-        <!--api文档的中文乱码设置-->
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- spring版本号 -->
-        <spring.version>4.3.11.RELEASE</spring.version>
-
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.2.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.2.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>1.2.2</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.37</version>
-        </dependency>
-
-        <!-- spring核心包 -->
+        <!--dependency>
+      <groupId>com.fs</groupId>
+      <artifactId>[the artifact id of the block to be mounted]</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency-->
+        <!--Spirng MVC整合  开始  -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.11.RELEASE</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
+            <version>4.3.11.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-oxm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
+            <version>4.3.11.RELEASE</version>
         </dependency>
+        <!--Spirng MVC整合  结束  -->
+
+
+        <!--Spirng mybatis整合  开始  -->
+        <!-- 连接数据库 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.21</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>${spring.version}</version>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.3.11.RELEASE</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <!-- 发送邮件所需要的依赖 -->
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.2</version>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.3.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
+        <!--Spirng mybatis整合  结束  -->
 
-        <!-- 格式化对象，方便输出日志 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.1.41</version>
-        </dependency>
+        <!-- 引入其他相关的依赖  开始 -->
 
+        <!-- jstl  引用第三方标签（cif cforeach）-->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.12</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.12</version>
-        </dependency>
-
-        <!--pagehelper-->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.0.0</version>
-        </dependency>
-
-        <!-- pagehelper的依赖包:jsqlparser -->
-        <dependency>
-            <groupId>com.github.jsqlparser</groupId>
-            <artifactId>jsqlparser</artifactId>
-            <version>0.9.5</version>
-        </dependency>
-
-        <!-- JSTL标签类 -->
-        <dependency>
-            <groupId>jstl</groupId>
+            <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!-- 映入JSON -->
+
+        <!-- json解析  转换对象或者集合-->
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>1.9.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.4</version>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.0</version>
         </dependency>
 
+        <!-- 事务管理 -->
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.9</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- Spring的单元测试 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.11.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
+            <scope>provided</scope>
         </dependency>
 
-        <!-- jsp依赖jar包start -->
+        <!-- 事务管理 -->
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>2.3.1</version>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.9</version>
         </dependency>
-
-        <!-- 上传组件包 -->
+        <!--文件上传开始-->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.3.1</version>
+            <version>1.3</version>
         </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.4</version>
+            <version>1.3.2</version>
         </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.9</version>
-        </dependency>
+        <!--文件上传结束-->
 
         <!-- shiro 整合 Spring  开始 -->
         <dependency>
@@ -198,12 +157,12 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
-            <version>1.2.2</version>
+            <version>1.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
-            <version>1.2.2</version>
+            <version>1.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -228,44 +187,27 @@
             <version>2.10.4</version>
             <type>pom</type>
         </dependency>
-        <!-- shiro 整合 Spring  结束 -->
 
+
+        <!-- shiro 整合 Spring  结束 -->
     </dependencies>
 
-
-    <!--添加插件-->
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.7</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <useUniqueVersions>false</useUniqueVersions>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>cn.mymaven.test.TestMain</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
-                <configuration>
-                    <reportOutputDirectory>../javadoc</reportOutputDirectory>
-                    <destDir>easy-delivery</destDir>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>8888</port>
+                            <maxIdleTime>30000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <webAppSourceDirectory>${project.build.directory}/${pom.artifactId}-${pom.version}
+                    </webAppSourceDirectory>
+                    <contextPath>/</contextPath>
                 </configuration>
             </plugin>
 
@@ -274,15 +216,27 @@
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.2</version>
                 <configuration>
-                    <!--mybatis的代码生成器的配置文件-->
+                    <!--配置文件的位置-->
                     <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
-                    <!--允许覆盖生成的文件-->
+                    <verbose>true</verbose>
                     <overwrite>true</overwrite>
-
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.mybatis.generator</groupId>
+                        <artifactId>mybatis-generator-core</artifactId>
+                        <version>1.3.2</version>
+                    </dependency>
+                </dependencies>
             </plugin>
-
-
         </plugins>
     </build>
 </project>
